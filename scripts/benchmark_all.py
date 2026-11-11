@@ -10,7 +10,7 @@ from urban_centrality.algorithms.closeness import compute as compute_closeness
 from urban_centrality.algorithms.information import compute as compute_information
 
 # from urban_centrality.algorithms.betweenness import compute as compute_betweenness
-# from urban_centrality.algorithms.straightness import compute as compute_straightness
+from urban_centrality.algorithms.straightness import compute as compute_straightness
 
 
 def generer_graphe_test(nb_noeuds: int, nb_aretes: int) -> Graph:
@@ -48,7 +48,7 @@ def main():
     algorithmes = {
         "Closeness": compute_closeness,
         "Information": compute_information,
-        # "Straightness": compute_straightness
+        "Straightness": compute_straightness,
     }
 
     # Dictionnaire pour stocker les temps de calcul
@@ -94,8 +94,8 @@ def main():
         valeurs_theoriques = []
         for N in tailles_noeuds:
             M = N * RATIO_ARETES
-            if nom == "Closeness":
-                # Closeness: O(V * M log V) -> comme M = 2.5V, c'est O(V^2 log V)
+            if nom in ("Closeness", "Straightness"):
+                # Closeness / Straightness : un Dijkstra par nœud, O(V * M log V) = O(V^2 log V)
                 complexite_max = (N_max**2) * math.log(N_max)
                 complexite_N = (N**2) * math.log(N)
 
