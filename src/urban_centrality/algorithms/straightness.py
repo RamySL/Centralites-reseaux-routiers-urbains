@@ -45,7 +45,7 @@ def compute(graph: Graph) -> dict[Node, float]:
 
 
 def _shortest_distances(graph: Graph, source: Node) -> dict[Node, float]:
-    """Dijkstra : distances depuis `source` vers les nœuds accessibles uniquement."""
+    """Dijkstra : distances depuis `source` vers les noeuds accessibles uniquement"""
     distances: dict[Node, float] = {source: 0.0}
     # L'id départage les distances égales.
     heap = [(0.0, source.id, source)]
